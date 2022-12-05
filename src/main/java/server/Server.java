@@ -3,6 +3,7 @@ package server;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +15,8 @@ import ui.ServerUi;
 public class Server extends Application{
 
 	public static Map<String, String> messages = new HashMap<String, String>();
-	public static List<String> logs = new ArrayList<String>();
-	public static List<Communication> usersList = new ArrayList<Communication>();
+	public static List<String> logs = new ArrayList<String>(Arrays.asList());
+	public static List<Communication> usersList = new ArrayList<Communication>(Arrays.asList());
 	private static ServerUi serverUi;
 	
 	public static void main(String[] args) {

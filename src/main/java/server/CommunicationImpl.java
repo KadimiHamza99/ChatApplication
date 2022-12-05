@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.application.Platform;
+import ui.ClientUi;
 import ui.ServerUi;
 
 public class CommunicationImpl extends UnicastRemoteObject implements Communication {
@@ -40,8 +41,8 @@ public class CommunicationImpl extends UnicastRemoteObject implements Communicat
 		Server.usersList.add(c);
 		for (Communication user : Server.usersList) {
 			if (!user.getName().equals(client.getName())) {
-				Server.messages.put(user.getName() + client.getName(), "");
-				Server.messages.put(client.getName() + user.getName(), "");
+				Server.messages.put(user.getName() + client.getName(), " ");
+				Server.messages.put(client.getName() + user.getName(), " ");
 			}
 		}
 	}
@@ -58,7 +59,7 @@ public class CommunicationImpl extends UnicastRemoteObject implements Communicat
 				if (user.getName().equals(to)) {
 					user.send(from, to, msg);
 					String conversation = Server.messages.get(to + from);
-					conversation += msg;
+					conversation += ",["+from+"]"+msg;
 					Server.messages.put(to + from, conversation);
 					Server.messages.put(from + to, conversation);
 				}

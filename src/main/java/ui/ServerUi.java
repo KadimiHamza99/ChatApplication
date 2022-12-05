@@ -23,6 +23,9 @@ public class ServerUi {
 	public static ObservableList<String> itemsU = FXCollections.observableArrayList();
 	public static ObservableList<String> itemsH = FXCollections.observableArrayList();
 	
+	public static ObservableList<String> getUsersList(){
+		return itemsU;
+	}
 	
 	public ServerUi(List<String> logs) {
 		

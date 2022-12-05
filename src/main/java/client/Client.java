@@ -24,22 +24,9 @@ public class Client
 			
 			launch(args);
 			
-			// Get the server instance (STUB)
-			server = (Communication) Naming.lookup("rmi://localhost:8080/CHAT");
-
-			// Check if there is already another client with the same name
-			Scanner s = new Scanner(System.in);
-			System.out.println("Entrez votre nom et appuyez sur Entrée:");
-			String name = s.nextLine().trim();
-			for (Communication c : server.getUsersList()) {
-				while (name.equals(c.getName())) {
-					System.out.println("Entrez votre nom et appuyez sur Entrée:");
-					name = s.nextLine().trim();
-				}
-			}
-
-			// create the client
-			client = new CommunicationImpl(name);
+			String name = "";
+			
+			
 
 			// Listen to messages & send it to the client
 			String msg = "[" + client.getName() + "] s'est connecté";
@@ -63,14 +50,7 @@ public class Client
 			String choice = s.nextLine().trim();
 			switch (choice) {
 				case "0":
-					try {
-						String msg = "[" + client.getName() + "] s'est déconnecté";
-						server.sendLogToServer(msg);
-						server.sendLogoutToServer(client.getName());
-					} catch (RemoteException e1) {
-						e1.printStackTrace();
-					}
-					System.exit(0);
+					
 					break;
 				case "1":
 					try {
@@ -135,7 +115,7 @@ public class Client
 
 	@Override
 	public void start(Stage arg0) throws Exception {
-		clientUi = new ClientUi(arg0,server,client);
+		clientUi = new ClientUi(arg0);
 	}
 
 }
